@@ -1,5 +1,5 @@
 
-package sk.stuba.fei.oop.generated;
+package zad2.sk.stuba.fei.oop.generated;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;

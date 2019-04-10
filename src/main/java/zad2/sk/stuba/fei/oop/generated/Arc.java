@@ -1,5 +1,5 @@
 
-package sk.stuba.fei.oop.generated;
+package zad2.sk.stuba.fei.oop.generated;
 
 import java.util.ArrayList;
 import java.util.List;
