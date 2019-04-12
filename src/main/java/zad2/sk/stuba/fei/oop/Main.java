@@ -1,6 +1,6 @@
-package sk.stuba.fei.oop;
+package zad2.sk.stuba.fei.oop;
 
-import sk.stuba.fei.oop.generated.Document;
+import zad2.sk.stuba.fei.oop.generated.Document;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

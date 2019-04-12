@@ -5,6 +5,7 @@ import java.util.*;
 public abstract class Objekt {
     private String name;    // meno prislusneho obejktu
     private long ID;        // ID prislusneho objektu
+    private int x = 0, y = 0;
 /*
 *   List odkial - dva moznosti  - u hran - objekt (prechod/miesto) kde zacina hrana
 *                               - u miest/prechodov - zoznam hran, ktore idu do daneho objektu
@@ -25,17 +26,15 @@ public abstract class Objekt {
     }
 
     // konstruktor
-    public Objekt(String name, long id) {
+    public Objekt(String name, long id, int x, int y) {
         this.name = name;
         this.ID = id;
+        this.x = x;
+        this.y = y;
     }
 
     public long getID() {
         return ID;
-    }
-
-    public String getName(){
-        return this.name;
     }
 
     // metoda getOdkial() a getKam() vrati zoznam odkial/kam
@@ -45,6 +44,10 @@ public abstract class Objekt {
 
     public List<Objekt> getKam() {
         return this.kam;
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     // metody vyuzivane u miest

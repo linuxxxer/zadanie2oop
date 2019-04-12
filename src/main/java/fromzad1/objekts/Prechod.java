@@ -7,8 +7,8 @@ import java.util.List;
 public class Prechod
         extends Objekt {
 
-    public Prechod(String name, long id) {
-        super(name, id);
+    public Prechod(String name, long id, int x, int y) {
+        super(name, id, x, y);
     }
 /*
  *  Overenie pustitelnosti prechodu, potom, ak je to pustitelny, pustenie prechodu
