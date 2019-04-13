@@ -36,7 +36,11 @@ public class PetriNet {
 //    metoda, ktora pusti prechod podla cisla id
 //    ak nevie pustit prechod, vypise, ktory prechod nebol pustitelny
     public void pustiPrechod(int id) {
-        prechodMap.get(id).pustitPrechod();
+        try {
+            prechodMap.get(id).pustitPrechod();
+        } catch (ExceptionFire exceptionFire) {
+            exceptionFire.printStackTrace();
+        }
     }
 
 //    metody na manpulaciu so sietou

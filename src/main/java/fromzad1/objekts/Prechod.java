@@ -1,6 +1,6 @@
 package fromzad1.objekts;
 
-import myexceptions.ExceptionFire;
+import fromzad1.myexceptions.ExceptionFire;
 
 import java.util.List;
 

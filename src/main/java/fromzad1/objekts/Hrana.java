@@ -1,7 +1,7 @@
 package fromzad1.objekts;
 
-import myexceptions.ExceptionCannotResolveValue;
-import myexceptions.ExceptionWrongObjectType;
+import fromzad1.myexceptions.ExceptionCannotResolveValue;
+import fromzad1.myexceptions.ExceptionWrongObjectType;
 
 public class Hrana
         extends Objekt{
