@@ -6,9 +6,9 @@ import fromzad1.myexceptions.*;
 
 public class PetriNet {
 
-    private Map<Integer, Miesto> miestoMap = new HashMap<Integer, Miesto>();
-    private Map<Integer, Prechod> prechodMap = new HashMap<Integer, Prechod>();
-    private Map<Integer, Hrana> hranaMap = new HashMap<Integer, Hrana>();
+    private Map<Long, Miesto> miestoMap = new HashMap<Long, Miesto>();
+    private Map<Long, Prechod> prechodMap = new HashMap<Long, Prechod>();
+    private Map<Long, Hrana> hranaMap = new HashMap<Long, Hrana>();
 
     /*public void defaultnyPetriSiet(){
 
@@ -45,29 +45,17 @@ public class PetriNet {
 
 //    metody na manpulaciu so sietou
 //    potrebne hlavne pre testovanie
-    public void vlozHrana(int id, Objekt odkial, Objekt kam, int nasobnost, int x, int y){
-        try {
-            hranaMap.put(id, new Hrana(odkial, kam, nasobnost, id, x, y));
-        } catch (ExceptionWrongObjectType exceptionWrongObjectType) {
-            exceptionWrongObjectType.printStackTrace();
-        } catch (ExceptionCannotResolveValue exceptionCannotResolveValue) {
-            exceptionCannotResolveValue.printStackTrace();
-        }
+    public void vlozHrana(Hrana hrana){
+            hranaMap.put(hrana.getID(), hrana);
     }
-    public void vlozReset(int id, Objekt odkial, Objekt kam, int nasobnost, int x, int y){
-        try {
-            hranaMap.put(id, new HranaReset(odkial, kam, nasobnost, id, x, y));
-        } catch (ExceptionWrongObjectType exceptionWrongObjectType) {
-            exceptionWrongObjectType.printStackTrace();
-        } catch (ExceptionCannotResolveValue exceptionCannotResolveValue) {
-            exceptionCannotResolveValue.printStackTrace();
-        }
+    public void vlozReset(HranaReset reset){
+            hranaMap.put(reset.getID(), reset);
     }
-    public void vlozPrechod(int id, String name, int x, int y){
-        prechodMap.put(id, new Prechod(name, id, x ,y));
+    public void vlozPrechod(Prechod prechod/*int id, String name, int x, int y*/){
+        prechodMap.put(prechod.getID(), prechod);
     }
-    public void vlozMiesto(int id, String name, int x, int y){
-        miestoMap.put(id, new Miesto(name, id, x, y));
+    public void vlozMiesto(Miesto miesto/*int id, String name, int x, int y*/){
+        miestoMap.put(miesto.getID(), miesto);
     }
 
 //    metody vracaju dany objekt podla id
@@ -81,7 +69,19 @@ public class PetriNet {
         return hranaMap.get(id);
     }
 
-//    metoda zmazMiesto vymaze miesto z mapu miestoMap a vymaze vsetky hrany spojene s tym prechodom
+    public Map<Long, Miesto> getMiestoMap() {
+        return miestoMap;
+    }
+
+    public Map<Long, Prechod> getPrechodMap() {
+        return prechodMap;
+    }
+
+    public Map<Long, Hrana> getHranaMap() {
+        return hranaMap;
+    }
+
+    //    metoda zmazMiesto vymaze miesto z mapu miestoMap a vymaze vsetky hrany spojene s tym prechodom
     public void zmazMiesto(int id){
         List<Objekt> hrany = miestoMap.get(id).getKam();
         zmazatNezbytocneHrany(hrany);

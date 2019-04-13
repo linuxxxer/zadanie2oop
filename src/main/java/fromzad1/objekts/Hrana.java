@@ -9,8 +9,8 @@ public class Hrana
     private int nasobnost;
 
 //      pri objekte Hrana meno je vzdy nastavene na "". Je to len formalne
-    public Hrana(Objekt odkialIn, Objekt kamIn, int nasobnostIn, long id, int x, int y) throws ExceptionWrongObjectType, ExceptionCannotResolveValue {
-        super("", id, x, y);
+    public Hrana(Objekt odkialIn, Objekt kamIn, int nasobnostIn, long id) throws ExceptionWrongObjectType, ExceptionCannotResolveValue {
+        super("", id, 0, 0);
         if (kamIn.getClass() == odkialIn.getClass()) {
             throw new ExceptionWrongObjectType();
         }
