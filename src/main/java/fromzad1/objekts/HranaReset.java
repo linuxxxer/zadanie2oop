@@ -8,9 +8,9 @@ public class HranaReset
         extends Hrana{
 
 
-    public HranaReset(Objekt odkialIn, Objekt kamIn, int nasobnostIn, long id, int x, int y)
+    public HranaReset(Objekt odkialIn, Objekt kamIn, int nasobnostIn, long id)
             throws ExceptionWrongObjectType, ExceptionCannotResolveValue {
-        super(odkialIn,kamIn,nasobnostIn, id, x, y);
+        super(odkialIn,kamIn,nasobnostIn, id);
         if (odkialIn.getClass() == Prechod.class){
             throw new  ExceptionWrongObjectType();
         }

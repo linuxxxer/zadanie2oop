@@ -59,6 +59,20 @@ public class PetriNet {
     }
 
 //    metody vracaju dany objekt podla id
+    public Objekt getObjekt(long id){
+        if (miestoMap.containsKey(id)){
+            return miestoMap.get(id);
+        }
+        else if (prechodMap.containsKey(id)){
+            return prechodMap.get(id);
+        }
+        else if (hranaMap.containsKey(id)){
+            return hranaMap.get(id);
+        }
+        else
+            return null;
+    }
+
     public Objekt getMiesto(int id){
         return miestoMap.get(id);
     }

@@ -1,7 +1,10 @@
 package zad2.sk.stuba.fei.oop;
 
 import fromzad1.PetriNet;
+import fromzad1.myexceptions.ExceptionCannotResolveValue;
+import fromzad1.myexceptions.ExceptionWrongObjectType;
 import fromzad1.objekts.Hrana;
+import fromzad1.objekts.HranaReset;
 import fromzad1.objekts.Miesto;
 import fromzad1.objekts.Prechod;
 import zad2.sk.stuba.fei.oop.generated.*;
@@ -37,6 +40,33 @@ public class CopyFromGenerated  {
          * the same for arcs
          * need to be careful with the types of the objekts!!
          */
+        for (Arc arc: document.getArc()){
+            if (arc.getType() == ArcType.REGULAR){
+                try {
+                    Hrana helperHrana = new Hrana(petriNet.getObjekt(arc.getSourceId()),
+                                                petriNet.getObjekt(arc.getDestinationId()),
+                                                arc.getMultiplicity(),
+                                                arc.getId());
+                } catch (ExceptionWrongObjectType exceptionWrongObjectType) {
+                    exceptionWrongObjectType.printStackTrace();
+                } catch (ExceptionCannotResolveValue exceptionCannotResolveValue) {
+                    exceptionCannotResolveValue.printStackTrace();
+                }
+            }
+            else if (arc.getType() == ArcType.RESET) {
+                try {
+                    Hrana helperHrana = new HranaReset(petriNet.getObjekt(arc.getSourceId()),
+                            petriNet.getObjekt(arc.getDestinationId()),
+                            arc.getMultiplicity(),
+                            arc.getId());
+                } catch (ExceptionWrongObjectType exceptionWrongObjectType) {
+                    exceptionWrongObjectType.printStackTrace();
+                } catch (ExceptionCannotResolveValue exceptionCannotResolveValue) {
+                    exceptionCannotResolveValue.printStackTrace();
+                }
+            }
+        }
+
 
         return petriNet;
     }
