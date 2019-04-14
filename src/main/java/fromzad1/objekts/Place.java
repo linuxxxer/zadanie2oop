@@ -1,11 +1,11 @@
 package fromzad1.objekts;
 
-public class Miesto
+public class Place
         extends Objekt {
 
     private int pocetTokenov = 0;
 
-    public Miesto(String name, long id, int x, int y) {
+    public Place(String name, long id, int x, int y) {
         super(name, id, x, y);
     }
 

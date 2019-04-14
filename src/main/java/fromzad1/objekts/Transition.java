@@ -4,10 +4,10 @@ import fromzad1.myexceptions.ExceptionFire;
 
 import java.util.List;
 
-public class Prechod
+public class Transition
         extends Objekt {
 
-    public Prechod(String name, long id, int x, int y) {
+    public Transition(String name, long id, int x, int y) {
         super(name, id, x, y);
     }
 /*
@@ -43,7 +43,7 @@ public class Prechod
         int pocetTokenov;
         for (Objekt hrana : hranyDo){
             temp = hrana.getOdkial().get(0);
-            if (hrana.getClass() == HranaReset.class){
+            if (hrana.getClass() == ArcReset.class){
                 temp.resetToken();
                 continue;
             }

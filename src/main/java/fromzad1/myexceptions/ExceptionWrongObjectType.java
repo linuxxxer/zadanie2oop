@@ -1,8 +1,5 @@
 package fromzad1.myexceptions;
 
-import fromzad1.objekts.Objekt;
-import fromzad1.objekts.Prechod;
-
 public class ExceptionWrongObjectType
         extends Exception {
 

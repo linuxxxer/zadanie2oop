@@ -3,15 +3,15 @@ package fromzad1.objekts;
 import fromzad1.myexceptions.ExceptionCannotResolveValue;
 import fromzad1.myexceptions.ExceptionWrongObjectType;
 
-// Hrana reset je odvodeny z classu Hrana, len osetruje, ci objekt odkial hrana vychadza je Miesto
-public class HranaReset
-        extends Hrana{
+// Arc reset je odvodeny z classu Arc, len osetruje, ci objekt odkial hrana vychadza je Place
+public class ArcReset
+        extends Arc {
 
 
-    public HranaReset(Objekt odkialIn, Objekt kamIn, int nasobnostIn, long id)
+    public ArcReset(Objekt odkialIn, Objekt kamIn, int nasobnostIn, long id)
             throws ExceptionWrongObjectType, ExceptionCannotResolveValue {
         super(odkialIn,kamIn,nasobnostIn, id);
-        if (odkialIn.getClass() == Prechod.class){
+        if (odkialIn.getClass() == Transition.class){
             throw new  ExceptionWrongObjectType();
         }
     }

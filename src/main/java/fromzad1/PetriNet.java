@@ -6,9 +6,9 @@ import fromzad1.myexceptions.*;
 
 public class PetriNet {
 
-    private Map<Long, Miesto> miestoMap = new HashMap<Long, Miesto>();
-    private Map<Long, Prechod> prechodMap = new HashMap<Long, Prechod>();
-    private Map<Long, Hrana> hranaMap = new HashMap<Long, Hrana>();
+    private Map<Long, Place> miestoMap = new HashMap<Long, Place>();
+    private Map<Long, Transition> prechodMap = new HashMap<Long, Transition>();
+    private Map<Long, Arc> hranaMap = new HashMap<Long, Arc>();
 
     /*public void defaultnyPetriSiet(){
 
@@ -45,17 +45,17 @@ public class PetriNet {
 
 //    metody na manpulaciu so sietou
 //    potrebne hlavne pre testovanie
-    public void vlozHrana(Hrana hrana){
-            hranaMap.put(hrana.getID(), hrana);
+    public void vlozHrana(Arc arc){
+            hranaMap.put(arc.getID(), arc);
     }
-    public void vlozReset(HranaReset reset){
+    public void vlozReset(ArcReset reset){
             hranaMap.put(reset.getID(), reset);
     }
-    public void vlozPrechod(Prechod prechod/*int id, String name, int x, int y*/){
-        prechodMap.put(prechod.getID(), prechod);
+    public void vlozPrechod(Transition transition/*int id, String name, int x, int y*/){
+        prechodMap.put(transition.getID(), transition);
     }
-    public void vlozMiesto(Miesto miesto/*int id, String name, int x, int y*/){
-        miestoMap.put(miesto.getID(), miesto);
+    public void vlozMiesto(Place place/*int id, String name, int x, int y*/){
+        miestoMap.put(place.getID(), place);
     }
 
 //    metody vracaju dany objekt podla id
@@ -83,15 +83,15 @@ public class PetriNet {
         return hranaMap.get(id);
     }
 
-    public Map<Long, Miesto> getMiestoMap() {
+    public Map<Long, Place> getMiestoMap() {
         return miestoMap;
     }
 
-    public Map<Long, Prechod> getPrechodMap() {
+    public Map<Long, Transition> getPrechodMap() {
         return prechodMap;
     }
 
-    public Map<Long, Hrana> getHranaMap() {
+    public Map<Long, Arc> getHranaMap() {
         return hranaMap;
     }
 
