@@ -43,6 +43,18 @@ public class PetriNet {
         }
     }
 
+/*
+ * Metoda na kontrolu, ci bol petrinet nacitane dobre z xml fileu
+ */
+    public void printTransitions(){
+        for (Transition transition : prechodMap.values()){
+            System.out.println(
+                    transition.getID() + " " + transition.getName()
+            );
+        }
+    }
+
+
 //    metody na manpulaciu so sietou
 //    potrebne hlavne pre testovanie
     public void vlozHrana(Arc arc){

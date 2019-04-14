@@ -1,5 +1,6 @@
 package zad2.sk.stuba.fei.oop;
 
+import com.sun.istack.internal.NotNull;
 import fromzad1.PetriNet;
 import fromzad1.myexceptions.ExceptionCannotResolveValue;
 import fromzad1.myexceptions.ExceptionWrongObjectType;
@@ -29,6 +30,7 @@ public class CopyFromGenerated  {
                                             transition.getId(),
                                             transition.getX(),
                                             transition.getY());
+            petriNet.vlozPrechod(prechod);
         }
 
         /* TODO
@@ -42,6 +44,7 @@ public class CopyFromGenerated  {
                                                 petriNet.getObjekt(arc.getDestinationId()),
                                                 arc.getMultiplicity(),
                                                 arc.getId());
+                    petriNet.vlozHrana(helperArc);
                 } catch (ExceptionWrongObjectType exceptionWrongObjectType) {
                     exceptionWrongObjectType.printStackTrace();
                 } catch (ExceptionCannotResolveValue exceptionCannotResolveValue) {
@@ -50,10 +53,11 @@ public class CopyFromGenerated  {
             }
             else if (arc.getType() == ArcType.RESET) {
                 try {
-                    fromzad1.objekts.Arc helperArc = new ArcReset(petriNet.getObjekt(arc.getSourceId()),
+                    fromzad1.objekts.ArcReset helperArc = new ArcReset(petriNet.getObjekt(arc.getSourceId()),
                             petriNet.getObjekt(arc.getDestinationId()),
                             arc.getMultiplicity(),
                             arc.getId());
+                    petriNet.vlozReset(helperArc);
                 } catch (ExceptionWrongObjectType exceptionWrongObjectType) {
                     exceptionWrongObjectType.printStackTrace();
                 } catch (ExceptionCannotResolveValue exceptionCannotResolveValue) {

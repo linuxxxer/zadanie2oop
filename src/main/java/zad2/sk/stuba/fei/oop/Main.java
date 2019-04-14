@@ -1,5 +1,7 @@
 package zad2.sk.stuba.fei.oop;
 
+import com.sun.istack.internal.NotNull;
+import fromzad1.PetriNet;
 import zad2.sk.stuba.fei.oop.generated.Document;
 
 import javax.xml.bind.JAXBContext;
@@ -11,17 +13,26 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            InputStream resource = ClassLoader.getSystemResourceAsStream("insurance.xml");
+            InputStream resource = ClassLoader.getSystemResourceAsStream("fortest2.xml");
             JAXBContext context = JAXBContext.newInstance(Document.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
             Document document = (Document) unmarshaller.unmarshal(resource);
 
-            System.out.println("Number of places:" + document.getPlace().size());
-            System.out.println("Number of tranistions:" + document.getTransition().size());
-            System.out.println("Number of arcs:" + document.getArc().size());
+//            System.out.println("Number of places:" + document.getPlace().size());
+//            System.out.println("Number of tranistions:" + document.getTransition().size());
+//            System.out.println("Number of arcs:" + document.getArc().size());
+
+            PetriNet petriNet;
+            CopyFromGenerated trans = new CopyFromGenerated();
+
+            petriNet = trans.transform(document);
+//            petriNet.printTransitions();
+
         } catch (JAXBException e) {
             e.printStackTrace();
         }
+
+
     }
 }
