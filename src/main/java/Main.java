@@ -1,7 +1,6 @@
 import fromzad1.PetriNet;
 import zad2.sk.stuba.fei.oop.CopyFromGenerated;
 import zad2.sk.stuba.fei.oop.generated.Document;
-//import zad2.sk.stuba.fei.oop.CopyFromGenerated;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,7 +9,7 @@ public class Main {
         Document document = new Document();
 //        XMLRead xmlRead = new XMLRead("path/to/xml/file");
         PetriNet petriNet = new PetriNet();
-        generator.copyAll(document, petriNet);
+
 
     }
 }
