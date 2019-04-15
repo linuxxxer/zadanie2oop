@@ -1,7 +1,7 @@
 package zad2.sk.stuba.fei.oop;
 
-import com.sun.istack.internal.NotNull;
 import fromzad1.PetriNet;
+import graphics.NetsFrame;
 import zad2.sk.stuba.fei.oop.generated.Document;
 
 import javax.xml.bind.JAXBContext;
@@ -28,7 +28,8 @@ public class Main {
 
             petriNet = trans.transform(document);
 //            petriNet.printTransitions();
-
+            NetsFrame frame = new NetsFrame();
+            frame.makeNewFrame();
         } catch (JAXBException e) {
             e.printStackTrace();
         }
