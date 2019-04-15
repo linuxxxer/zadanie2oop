@@ -24,10 +24,9 @@ public class Main {
 //            System.out.println("Number of arcs:" + document.getArc().size());
 
             PetriNet petriNet;
-            CopyFromGenerated trans = new CopyFromGenerated();
+            PetriNetTransformer trans = new PetriNetTransformer();
 
             petriNet = trans.transform(document);
-//            petriNet.printTransitions();
             NetsFrame frame = new NetsFrame();
             frame.makeNewFrame();
         } catch (JAXBException e) {

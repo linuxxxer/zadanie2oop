@@ -13,7 +13,7 @@ import zad2.sk.stuba.fei.oop.generated.*;
 * from the generated classes to
 * my classes
 */
-public class CopyFromGenerated  {
+public class PetriNetTransformer {
 
     public PetriNet transform(Document document){
         PetriNet petriNet = new PetriNet();
