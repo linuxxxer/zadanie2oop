@@ -7,15 +7,16 @@ import java.util.List;
 public class Transition
         extends Objekt {
 
-    public Transition(String name, long id, int x, int y) {
-        super(name, id, x, y);
+    public Transition(String name, long id) {
+        super(name, id);
     }
 /*
  *  Overenie pustitelnosti prechodu, potom, ak je to pustitelny, pustenie prechodu
  */
-    public void pustitPrechod() throws ExceptionFire{
-        this.testujPustitelnost();
-        this.pustiPrechod();
+    public void fireTransition()
+            throws ExceptionFire{
+        this.testFireAbility();
+        this.fire();
 
 
     }
@@ -23,10 +24,11 @@ public class Transition
  *          overenie, ci je nasobnost vacsia ako pocet tokenov v mieste, odkial vychadza
  *          ak je vacsia, tak vyhodi vynimku ExceptionFire() -- prechod nie je pustitelny
  */
-    private void testujPustitelnost() throws ExceptionFire{
-        List<Objekt> hrany = this.getOdkial();
-        for (Objekt hrana : hrany){
-            if (hrana.getNasobnost() > (hrana.getOdkial().get(0)).getPocetTokenov()){
+    private void testFireAbility()
+            throws ExceptionFire{
+        List<Objekt> arcs = this.getFromWhere();
+        for (Objekt arc : arcs){
+            if (arc.getMultiplicity() > (arc.getFromWhere().get(0)).getTokenNumber()){
                 throw new ExceptionFire();
             }
         }
@@ -34,26 +36,26 @@ public class Transition
 /*
  *  Pustenie prechodu
  *  predpokladame, ze pred pustenim sa osetrilo pustitelnost prechodu pomocou
- *  funkcie testujPustitelnost()
+ *  funkcie testFireAbility()
  */
-    private void pustiPrechod(){
-        List<Objekt> hranyDo = this.getOdkial();
-        List<Objekt> hranyZ  = this.getKam();
+    private void fire(){
+        List<Objekt> arcsTo = this.getFromWhere();
+        List<Objekt> arcsFrom  = this.getToWhere();
         Objekt temp;
-        int pocetTokenov;
-        for (Objekt hrana : hranyDo){
-            temp = hrana.getOdkial().get(0);
-            if (hrana.getClass() == ArcReset.class){
+        int tokenNumber;
+        for (Objekt arc : arcsTo){
+            temp = arc.getFromWhere().get(0);
+            if (arc.getClass() == ArcReset.class){
                 temp.resetToken();
                 continue;
             }
-            pocetTokenov = hrana.getNasobnost();
-            temp.setToken(-pocetTokenov);
+            tokenNumber = arc.getMultiplicity();
+            temp.setToken(-tokenNumber);
         }
-        for (Objekt hrana : hranyZ) {
-            temp = hrana.getKam().get(0);
-            pocetTokenov = hrana.getNasobnost();
-            temp.setToken(pocetTokenov);
+        for (Objekt arc : arcsFrom) {
+            temp = arc.getToWhere().get(0);
+            tokenNumber = arc.getMultiplicity();
+            temp.setToken(tokenNumber);
         }
     }
 }

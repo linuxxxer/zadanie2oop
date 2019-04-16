@@ -8,10 +8,10 @@ public class ArcReset
         extends Arc {
 
 
-    public ArcReset(Objekt odkialIn, Objekt kamIn, int nasobnostIn, long id)
+    public ArcReset(Objekt fromWhere, Objekt toWhere, int multiplicity, long id)
             throws ExceptionWrongObjectType, ExceptionCannotResolveValue {
-        super(odkialIn,kamIn,nasobnostIn, id);
-        if (odkialIn.getClass() == Transition.class){
+        super(fromWhere, toWhere, multiplicity, id);
+        if (fromWhere.getClass() == Transition.class){
             throw new  ExceptionWrongObjectType();
         }
     }

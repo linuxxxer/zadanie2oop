@@ -6,27 +6,27 @@ import fromzad1.myexceptions.ExceptionWrongObjectType;
 public class Arc
         extends Objekt{
 
-    private int nasobnost;
+    private int multiplicity;
 
 //      pri objekte Arc meno je vzdy nastavene na "". Je to len formalne
-    public Arc(Objekt odkialIn, Objekt kamIn, int nasobnostIn, long id) throws ExceptionWrongObjectType, ExceptionCannotResolveValue {
-        super("", id, 0, 0);
-        if (kamIn.getClass() == odkialIn.getClass()) {
+    public Arc(Objekt fromWhere, Objekt toWhere, int multiplicity, long id) throws ExceptionWrongObjectType, ExceptionCannotResolveValue {
+        super("", id);
+        if (toWhere.getClass() == fromWhere.getClass()) {
             throw new ExceptionWrongObjectType();
         }
-        if (nasobnostIn <= 0){
+        if (multiplicity <= 0){
             throw new ExceptionCannotResolveValue();
         }
 //      pridavanie parametrov na ich prislusne miesto
-        addIn(odkialIn);
-        addOut(kamIn);
-        odkialIn.addOut(this);
-        kamIn.addIn(this);
-        this.nasobnost = nasobnostIn;
+        addIn(fromWhere);
+        addOut(toWhere);
+        fromWhere.addOut(this);
+        toWhere.addIn(this);
+        this.multiplicity = multiplicity;
     }
 
     @Override
-    public int getNasobnost() {
-        return nasobnost;
+    public int getMultiplicity() {
+        return multiplicity;
     }
 }

@@ -35,19 +35,6 @@ public class NetsFrame extends Frame {
             }
         });
 
-
-//        button.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                int retVal = chooseFile.showOpenDialog(button);
-//                if (retVal == JFileChooser.APPROVE_OPTION){
-//                    String file = chooseFile.getSelectedFile().getAbsolutePath();
-//                    System.out.println("Path to file:\t" + file);
-//                    PetriNetTransformer petriNetTransformer = new PetriNetTransformer();
-//                    petriNetTransformer.loadFromXML(file);
-//                }
-//            }
-//        });
-
         panel.add(button);
         this.add(panel, BorderLayout.NORTH);
         addWindowListener(new WindowAdapter() {
