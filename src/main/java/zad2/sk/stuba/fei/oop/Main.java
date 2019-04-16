@@ -27,8 +27,8 @@ public class Main {
             PetriNetTransformer trans = new PetriNetTransformer();
 
             petriNet = trans.transform(document);
-            NetsFrame frame = new NetsFrame();
-            frame.makeNewFrame();
+//            NetsFrame frame = new NetsFrame();
+
         } catch (JAXBException e) {
             e.printStackTrace();
         }

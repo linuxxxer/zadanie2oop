@@ -1,6 +1,8 @@
 package zad2.sk.stuba.fei.oop;
 
 import com.sun.istack.internal.NotNull;
+import com.sun.org.apache.xalan.internal.xsltc.dom.LoadDocument;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import fromzad1.PetriNet;
 import fromzad1.myexceptions.ExceptionCannotResolveValue;
 import fromzad1.myexceptions.ExceptionWrongObjectType;
@@ -8,12 +10,18 @@ import fromzad1.objekts.ArcReset;
 import fromzad1.objekts.Place;
 import zad2.sk.stuba.fei.oop.generated.*;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
+import java.io.InputStream;
+
 /*
 * Class to copy the petri net structure
 * from the generated classes to
 * my classes
 */
-public class PetriNetTransformer {
+public class PetriNetTransformer extends Document {
 
     public PetriNet transform(Document document){
         PetriNet petriNet = new PetriNet();
@@ -68,6 +76,36 @@ public class PetriNetTransformer {
 
 
         return petriNet;
+    }
+
+    public void loadFromXML(String pathToFile){
+
+        File file = new File(pathToFile);
+
+
+
+        try {
+            InputStream resource = /*LoadDocument.documentF(1, ) */ClassLoader.getSystemResourceAsStream(file.getName());
+            JAXBContext context = JAXBContext.newInstance(Document.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+
+            Document document = (Document) unmarshaller.unmarshal(resource);
+
+            System.out.println("Number of places:" + document.getPlace().size());
+            System.out.println("Number of tranistions:" + document.getTransition().size());
+            System.out.println("Number of arcs:" + document.getArc().size());
+
+            PetriNet petriNet;
+            PetriNetTransformer trans = new PetriNetTransformer();
+
+            petriNet = trans.transform(document);
+//            NetsFrame frame = new NetsFrame();
+
+    } catch (
+    JAXBException e) {
+        e.printStackTrace();
+    }
+
     }
 
 
