@@ -5,8 +5,8 @@ public class Miesto
 
     private int pocetTokenov = 0;
 
-    public Miesto(String name, long id) {
-        super(name, id);
+    public Miesto(String name, long id, int x, int y) {
+        super(name, id, x, y);
     }
 
     @Override
