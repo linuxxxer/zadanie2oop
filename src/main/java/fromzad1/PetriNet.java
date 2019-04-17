@@ -2,124 +2,86 @@ package fromzad1;
 
 import java.util.*;
 import fromzad1.objekts.*;
-import fromzad1.myexceptions.*;
 
 public class PetriNet {
 
-    private Map<Long, Miesto> miestoMap = new HashMap<Long, Miesto>();
-    private Map<Long, Prechod> prechodMap = new HashMap<Long, Prechod>();
-    private Map<Long, Hrana> hranaMap = new HashMap<Long, Hrana>();
-
-    /*public void defaultnyPetriSiet(){
-
-        for (int p = 0; p < 5; p++){
-            vlozPrechod(p+1, "p"+(p+1), 0, 0);
-        }
-
-        for (int m = 0; m < 7; m++){
-            vlozMiesto(m+1, "m"+(m+1), 0, 0);
-        }
-        miestoMap.get(3).setToken(1);
-        miestoMap.get(4).setToken(0);
-        miestoMap.get(5).setToken(5);
-
-        vlozHrana(1, miestoMap.get(2),  prechodMap.get(3),1, 0, 0);
-        vlozHrana(2, prechodMap.get(3), miestoMap.get(1), 5, 0, 0);
-        vlozHrana(3, miestoMap.get(3),  prechodMap.get(4),1, 0, 0);
-        vlozHrana(4, prechodMap.get(4), miestoMap.get(3), 2, 0, 0);
-        vlozHrana(5, miestoMap.get(4),  prechodMap.get(5),1, 0, 0);
-        vlozHrana(6, prechodMap.get(5), miestoMap.get(6), 1, 0, 0);
-        vlozHrana(7, prechodMap.get(5), miestoMap.get(7), 1, 0, 0);
-        vlozReset(8, miestoMap.get(5), prechodMap.get(5), 1, 0, 0);
-    }*/
+    private Map<Long, Place> placeMap = new HashMap<>();
+    private Map<Long, Transition> transitionMap = new HashMap<>();
+    private Map<Long, Arc> arcMap = new HashMap<>();
 
 //    metoda, ktora pusti prechod podla cisla id
 //    ak nevie pustit prechod, vypise, ktory prechod nebol pustitelny
-    public void pustiPrechod(int id) {
-        try {
-            prechodMap.get(id).pustitPrechod();
-        } catch (ExceptionFire exceptionFire) {
-            exceptionFire.printStackTrace();
-        }
+    public void pustiPrechod(long id) {
+        transitionMap.get(id).fireTransition();
     }
 
 //    metody na manpulaciu so sietou
 //    potrebne hlavne pre testovanie
-    public void vlozHrana(Hrana hrana){
-            hranaMap.put(hrana.getID(), hrana);
+    public void addArc(Arc arc){
+            arcMap.put(arc.getID(), arc);
     }
-    public void vlozReset(HranaReset reset){
-            hranaMap.put(reset.getID(), reset);
+    public void addResetArc(ArcReset reset){
+            arcMap.put(reset.getID(), reset);
     }
-    public void vlozPrechod(Prechod prechod/*int id, String name, int x, int y*/){
-        prechodMap.put(prechod.getID(), prechod);
+    public void addTransition(Transition transition){
+        transitionMap.put(transition.getID(), transition);
     }
-    public void vlozMiesto(Miesto miesto/*int id, String name, int x, int y*/){
-        miestoMap.put(miesto.getID(), miesto);
+    public void addPlace(Place place){
+        placeMap.put(place.getID(), place);
     }
 
 //    metody vracaju dany objekt podla id
     public Objekt getObjekt(long id){
-        if (miestoMap.containsKey(id)){
-            return miestoMap.get(id);
+        if (placeMap.containsKey(id)){
+            return placeMap.get(id);
         }
-        else if (prechodMap.containsKey(id)){
-            return prechodMap.get(id);
+        else if (transitionMap.containsKey(id)){
+            return transitionMap.get(id);
         }
-        else if (hranaMap.containsKey(id)){
-            return hranaMap.get(id);
+        else if (arcMap.containsKey(id)){
+            return arcMap.get(id);
         }
         else
             return null;
     }
 
-    public Objekt getMiesto(int id){
-        return miestoMap.get(id);
-    }
-    public Objekt getPrechod(int id){
-        return prechodMap.get(id);
-    }
-    public Objekt getHrana(int id){
-        return hranaMap.get(id);
+    public Map<Long, Place> getPlaceMap() {
+        return placeMap;
     }
 
-    public Map<Long, Miesto> getMiestoMap() {
-        return miestoMap;
+    public Map<Long, Transition> getTransitionMap() {
+        return transitionMap;
     }
 
-    public Map<Long, Prechod> getPrechodMap() {
-        return prechodMap;
+    public Map<Long, Arc> getArcMap() {
+        return arcMap;
     }
 
-    public Map<Long, Hrana> getHranaMap() {
-        return hranaMap;
+    //    metoda removePlace vymaze miesto z mapu placeMap a vymaze vsetky hrany spojene s tym prechodom
+    public void removePlace(long id){
+        List<Objekt> arcs = placeMap.get(id).getToWhere();
+        removeUnnecessaryArcs(arcs);
+        arcs = placeMap.get(id).getFromWhere();
+        removeUnnecessaryArcs(arcs);
+        placeMap.remove(id);
     }
 
-    //    metoda zmazMiesto vymaze miesto z mapu miestoMap a vymaze vsetky hrany spojene s tym prechodom
-    public void zmazMiesto(int id){
-        List<Objekt> hrany = miestoMap.get(id).getKam();
-        zmazatNezbytocneHrany(hrany);
-        hrany = miestoMap.get(id).getOdkial();
-        zmazatNezbytocneHrany(hrany);
-        miestoMap.remove(id);
+//    metoda removeTransition vymaze prechod z mapu transitionMap a vymaze vsetky hrany spojene s tym prechodom
+    public void removeTransition(long id){
+        List<Objekt> arcs = transitionMap.get(id).getFromWhere();
+        removeUnnecessaryArcs(arcs);
+        arcs = transitionMap.get(id).getToWhere();
+        removeUnnecessaryArcs(arcs);
+        transitionMap.remove(id);
     }
 
-//    metoda zmazPrechod vymaze prechod z mapu prechodMap a vymaze vsetky hrany spojene s tym prechodom
-    public void zmazPrechod(int id){
-        List<Objekt> hrany = prechodMap.get(id).getOdkial();
-        zmazatNezbytocneHrany(hrany);
-        hrany = prechodMap.get(id).getKam();
-        zmazatNezbytocneHrany(hrany);
-        prechodMap.remove(id);
-    }
-
-    private void zmazatNezbytocneHrany(List<Objekt> hrany){
-                for (Objekt hrana : hrany) {
-                    zmazHrana((int)hrana.getID());
+    private void removeUnnecessaryArcs(List<Objekt> arcs){
+                for (Objekt arc : arcs) {
+                    removeArc(arc.getID());
                 }
     }
 
-    private void zmazHrana(int id){
-        hranaMap.remove(id);
+    private void removeArc(long id){
+        arcMap.remove(id);
     }
 }

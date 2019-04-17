@@ -6,6 +6,6 @@ public class ExceptionFire
         extends Exception {
 
     public void ExceptionCannotFire(Objekt objekt){
-        System.out.println("Prechod " + objekt.getName() + " nie je pustitelny.");
+        System.out.println("Transition " + objekt.getName() + " nie je pustitelny.");
     }
 }

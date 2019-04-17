@@ -5,24 +5,32 @@ import java.util.*;
 public abstract class Objekt {
     private String name;    // meno prislusneho obejktu
     private long ID;        // ID prislusneho objektu
-    private int x = 0, y = 0;
+    private int x, y;
 /*
-*   List odkial - dva moznosti  - u hran - objekt (prechod/miesto) kde zacina hrana
+*   List fromWhere - dva moznosti  - u hran - objekt (prechod/miesto) kde zacina hrana
 *                               - u miest/prechodov - zoznam hran, ktore idu do daneho objektu
-*   List kam    - dva moznosti  - u hran - objekt (prechod/miesto) kde konci hrana
+*   List toWhere    - dva moznosti  - u hran - objekt (prechod/miesto) kde konci hrana
 *                               / u miest/prechodov - zoznam hran, ktore idu z daneho objektu
 */
-    private List<Objekt> odkial = new ArrayList<Objekt>();
-    private List<Objekt> kam = new ArrayList<Objekt>();
+    private List<Objekt> fromWhere = new ArrayList<>();
+    private List<Objekt> toWhere = new ArrayList<>();
 
-    // metoda prida objekt do zoznamu odkial
+    // metoda prida objekt do zoznamu fromWhere
     void addIn(Objekt toAdd){
-        odkial.add(toAdd);
+        fromWhere.add(toAdd);
     }
 
-    // metoda prida objekt do zoznamu kam
+    // metoda prida objekt do zoznamu toWhere
     void addOut(Objekt toAdd){
-        kam.add(toAdd);
+        toWhere.add(toAdd);
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     // konstruktor
@@ -37,13 +45,13 @@ public abstract class Objekt {
         return ID;
     }
 
-    // metoda getOdkial() a getKam() vrati zoznam odkial/kam
-    public List<Objekt> getOdkial() {
-        return this.odkial;
+    // metoda getFromWhere() a getToWhere() vrati zoznam fromWhere/toWhere
+    public List<Objekt> getFromWhere() {
+        return this.fromWhere;
     }
 
-    public List<Objekt> getKam() {
-        return this.kam;
+    public List<Objekt> getToWhere() {
+        return this.toWhere;
     }
 
     public String getName(){
@@ -51,17 +59,13 @@ public abstract class Objekt {
     }
 
     // metody vyuzivane u miest
-    public int getPocetTokenov(){
-        return 0;
-    }
+    public abstract int getTokenNumber();
 
     public void setToken(int pocet){ }
 
     public void resetToken(){ }
 
     // metody vyuzivane u hran
-    public int getNasobnost(){
-        return 0;
-    }
+    public abstract int getMultiplicity();
 
 }

@@ -1,16 +1,9 @@
-import fromzad1.PetriNet;
-import zad2.sk.stuba.fei.oop.CopyFromGenerated;
-import zad2.sk.stuba.fei.oop.generated.Document;
-//import zad2.sk.stuba.fei.oop.CopyFromGenerated;
+import graphics.NetsFrame;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-        CopyFromGenerated generator = null;
-        Document document = new Document();
-//        XMLRead xmlRead = new XMLRead("path/to/xml/file");
-        PetriNet petriNet = new PetriNet();
-        generator.copyAll(document, petriNet);
+
+        NetsFrame myFrame = new NetsFrame();
 
     }
 }
