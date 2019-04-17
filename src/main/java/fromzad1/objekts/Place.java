@@ -3,7 +3,7 @@ package fromzad1.objekts;
 public class Place
         extends Objekt {
 
-    private int TokenNumber = 0;
+    private int TokenNumber;
 
     public Place(String name, long id, int tokens, int x, int y) {
         super(name, id, x, y);

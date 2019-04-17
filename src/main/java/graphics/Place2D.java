@@ -28,11 +28,13 @@ public class Place2D extends Ellipse2D.Float implements Drawable {
     @Override
     public void onClick(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1){
-            // add token
+            // add token when left mouse button pressed
             place.setToken(1);
         }else if (e.getButton() == MouseEvent.BUTTON3){
-            // remove token
+            // remove token when right mouse button pressed
             place.setToken(-1);
+        }else if (e.getButton() == MouseEvent.BUTTON2){
+            place.resetToken();
         }
     }
 }

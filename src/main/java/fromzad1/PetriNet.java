@@ -2,54 +2,18 @@ package fromzad1;
 
 import java.util.*;
 import fromzad1.objekts.*;
-import fromzad1.myexceptions.*;
 
 public class PetriNet {
 
-    private Map<Long, Place> placeMap = new HashMap<Long, Place>();
-    private Map<Long, Transition> transitionMap = new HashMap<Long, Transition>();
-    private Map<Long, Arc> arcMap = new HashMap<Long, Arc>();
-
-    /*public void defaultnyPetriSiet(){
-
-        for (int p = 0; p < 5; p++){
-            addTransition(p+1, "p"+(p+1), 0, 0);
-        }
-
-        for (int m = 0; m < 7; m++){
-            addPlace(m+1, "m"+(m+1), 0, 0);
-        }
-        placeMap.get(3).setToken(1);
-        placeMap.get(4).setToken(0);
-        placeMap.get(5).setToken(5);
-
-        addArc(1, placeMap.get(2),  transitionMap.get(3),1, 0, 0);
-        addArc(2, transitionMap.get(3), placeMap.get(1), 5, 0, 0);
-        addArc(3, placeMap.get(3),  transitionMap.get(4),1, 0, 0);
-        addArc(4, transitionMap.get(4), placeMap.get(3), 2, 0, 0);
-        addArc(5, placeMap.get(4),  transitionMap.get(5),1, 0, 0);
-        addArc(6, transitionMap.get(5), placeMap.get(6), 1, 0, 0);
-        addArc(7, transitionMap.get(5), placeMap.get(7), 1, 0, 0);
-        addResetArc(8, placeMap.get(5), transitionMap.get(5), 1, 0, 0);
-    }*/
+    private Map<Long, Place> placeMap = new HashMap<>();
+    private Map<Long, Transition> transitionMap = new HashMap<>();
+    private Map<Long, Arc> arcMap = new HashMap<>();
 
 //    metoda, ktora pusti prechod podla cisla id
 //    ak nevie pustit prechod, vypise, ktory prechod nebol pustitelny
     public void pustiPrechod(long id) {
         transitionMap.get(id).fireTransition();
     }
-
-/*
- * Metoda na kontrolu, ci bol petrinet nacitane dobre z xml fileu
- */
-    public void printTransitions(){
-        for (Transition transition : transitionMap.values()){
-            System.out.println(
-                    transition.getID() + " " + transition.getName()
-            );
-        }
-    }
-
 
 //    metody na manpulaciu so sietou
 //    potrebne hlavne pre testovanie
@@ -59,10 +23,10 @@ public class PetriNet {
     public void addResetArc(ArcReset reset){
             arcMap.put(reset.getID(), reset);
     }
-    public void addTransition(Transition transition/*int id, String name, int x, int y*/){
+    public void addTransition(Transition transition){
         transitionMap.put(transition.getID(), transition);
     }
-    public void addPlace(Place place/*int id, String name, int x, int y*/){
+    public void addPlace(Place place){
         placeMap.put(place.getID(), place);
     }
 
@@ -79,16 +43,6 @@ public class PetriNet {
         }
         else
             return null;
-    }
-
-    public Objekt getPlace(long id){
-        return placeMap.get(id);
-    }
-    public Objekt getTransition(long id){
-        return transitionMap.get(id);
-    }
-    public Objekt getArc(long id){
-        return arcMap.get(id);
     }
 
     public Map<Long, Place> getPlaceMap() {

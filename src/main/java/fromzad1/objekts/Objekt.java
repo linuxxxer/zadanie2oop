@@ -5,15 +5,15 @@ import java.util.*;
 public abstract class Objekt {
     private String name;    // meno prislusneho obejktu
     private long ID;        // ID prislusneho objektu
-    private int x = 0, y = 0;
+    private int x, y;
 /*
 *   List fromWhere - dva moznosti  - u hran - objekt (prechod/miesto) kde zacina hrana
 *                               - u miest/prechodov - zoznam hran, ktore idu do daneho objektu
 *   List toWhere    - dva moznosti  - u hran - objekt (prechod/miesto) kde konci hrana
 *                               / u miest/prechodov - zoznam hran, ktore idu z daneho objektu
 */
-    private List<Objekt> fromWhere = new ArrayList<Objekt>();
-    private List<Objekt> toWhere = new ArrayList<Objekt>();
+    private List<Objekt> fromWhere = new ArrayList<>();
+    private List<Objekt> toWhere = new ArrayList<>();
 
     // metoda prida objekt do zoznamu fromWhere
     void addIn(Objekt toAdd){

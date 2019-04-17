@@ -1,8 +1,6 @@
 package graphics;
 
-import fromzad1.myexceptions.ExceptionFire;
 import fromzad1.objekts.Transition;
-import org.omg.CORBA.CODESET_INCOMPATIBLE;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -19,16 +17,12 @@ public class Transition2D extends Rectangle2D.Float implements Drawable {
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        try {
-            if (this.transition.testFireAbility()){
-                graphics2D.setColor(Color.GREEN);
-            } else {
-                graphics2D.setColor(Color.RED);
-            }
-//            graphics2D.setColor(Color.WHITE);
-        } catch (ExceptionFire exceptionFire) {
-            exceptionFire.printStackTrace();
+        if (this.transition.testFireAbility()){
+            graphics2D.setColor(Color.GREEN);
+        } else {
+            graphics2D.setColor(Color.RED);
         }
+
         graphics2D.fill(this);
         graphics2D.setColor(Color.BLACK);
         graphics2D.draw(this);
@@ -37,13 +31,8 @@ public class Transition2D extends Rectangle2D.Float implements Drawable {
 
     @Override
     public void onClick(MouseEvent e) {
-        try {
-            if (this.transition.testFireAbility()){
-                this.transition.fireTransition();
-            }
-
-        } catch (ExceptionFire exceptionFire) {
-            exceptionFire.printStackTrace();
+        if (this.transition.testFireAbility()){
+            this.transition.fireTransition();
         }
     }
 }

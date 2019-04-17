@@ -1,9 +1,5 @@
 package graphics;
 
-import fromzad1.PetriNet;
-import fromzad1.myexceptions.ExceptionFire;
-import zad2.sk.stuba.fei.oop.DrawableTransformer;
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -35,7 +31,6 @@ public class NetsCanvas extends Canvas implements MouseListener {
         for (Drawable drawable : drawableList){
             if (drawable.contains(e.getX(), e.getY())){
                 drawable.onClick(e);
-
             }
         }
         this.repaint();
@@ -43,21 +38,17 @@ public class NetsCanvas extends Canvas implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
     }
 }

@@ -1,9 +1,6 @@
 package zad2.sk.stuba.fei.oop;
 
 import fromzad1.PetriNet;
-import fromzad1.myexceptions.ExceptionCannotResolveValue;
-import fromzad1.myexceptions.ExceptionWrongObjectType;
-import fromzad1.objekts.ArcReset;
 import graphics.*;
 import zad2.sk.stuba.fei.oop.generated.*;
 
@@ -22,13 +19,13 @@ public class DrawableTransformer extends Transformer<List<Drawable>> {
     public List<Drawable> transform(Document document) {
         List<Drawable> drawables = new LinkedList<>();
 
-
         for (Arc arc : document.getArc()){
             Arc2D arc2D = new Arc2D(
                     petriNet.getObjekt(arc.getSourceId()).getX()+20,
                     petriNet.getObjekt(arc.getSourceId()).getY()+20,
                     petriNet.getObjekt(arc.getDestinationId()).getX()+20,
-                    petriNet.getObjekt(arc.getDestinationId()).getY()+20
+                    petriNet.getObjekt(arc.getDestinationId()).getY()+20,
+                    (fromzad1.objekts.Arc) petriNet.getObjekt(arc.getId())
             );
             drawables.add(arc2D);
         }
@@ -37,7 +34,7 @@ public class DrawableTransformer extends Transformer<List<Drawable>> {
             Place2D place2D = new Place2D(
                     place.getX(),
                     place.getY(),
-                    (fromzad1.objekts.Place) petriNet.getPlace(place.getId())
+                    (fromzad1.objekts.Place) petriNet.getObjekt(place.getId())
             );
             drawables.add(place2D);
         }
@@ -46,14 +43,10 @@ public class DrawableTransformer extends Transformer<List<Drawable>> {
             Transition2D transition2D = new Transition2D(
                     transition.getX(),
                     transition.getY(),
-                    (fromzad1.objekts.Transition) petriNet.getTransition(transition.getId())
+                    (fromzad1.objekts.Transition) petriNet.getObjekt(transition.getId())
             );
             drawables.add(transition2D);
         }
-
-
-
-
         return drawables;
     }
 

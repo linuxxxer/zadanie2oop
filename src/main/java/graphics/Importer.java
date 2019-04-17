@@ -1,7 +1,6 @@
 package graphics;
 
 import zad2.sk.stuba.fei.oop.generated.Document;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;

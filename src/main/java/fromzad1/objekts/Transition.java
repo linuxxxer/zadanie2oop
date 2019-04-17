@@ -1,7 +1,5 @@
 package fromzad1.objekts;
 
-import fromzad1.myexceptions.ExceptionFire;
-
 import java.util.List;
 
 public class Transition
@@ -25,11 +23,7 @@ public class Transition
  *  Overenie pustitelnosti prechodu, potom, ak je to pustitelny, pustenie prechodu
  */
     public void fireTransition(){
-        try {
-            this.testFireAbility();
-        } catch (ExceptionFire exceptionFire) {
-            exceptionFire.ExceptionCannotFire(this);
-        }
+        this.testFireAbility();
         this.fire();
 
 
@@ -38,8 +32,7 @@ public class Transition
  *          overenie, ci je nasobnost vacsia ako pocet tokenov v mieste, odkial vychadza
  *          ak je vacsia, tak vyhodi vynimku ExceptionFire() -- prechod nie je pustitelny
  */
-    public boolean testFireAbility()
-            throws ExceptionFire{
+    public boolean testFireAbility(){
         List<Objekt> arcs = this.getFromWhere();
         for (Objekt arc : arcs){
             if (arc.getClass() == ArcReset.class){

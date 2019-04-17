@@ -45,14 +45,9 @@ public class NetsFrame extends Frame implements ActionListener{
                 DrawableTransformer drawableTransformer = new DrawableTransformer(petriNet);
                 canvas.load(drawableTransformer.transformFromXML(jf.getSelectedFile().getAbsolutePath()));
 
-
                 canvas.repaint();
             }
         });
-
-
-
-
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -62,14 +57,12 @@ public class NetsFrame extends Frame implements ActionListener{
         });
     }
 
+    /*
+     * TODO
+     *  ACTIONLISTENER --- what the fuck...
+     * TODO
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
-        FileDialog dialog = new FileDialog(this, "Otvor", FileDialog.LOAD);
-        String path = dialog.getDirectory() + dialog.getFile();
-        int retVal = jf.showOpenDialog(this);
-        if (retVal == JFileChooser.APPROVE_OPTION){
-            PetriNetTransformer pnt = new PetriNetTransformer();
-//            petriNet = pnt.transformFromXML(jf.getSelectedFile().getAbsolutePath());
-        }
     }
 }
