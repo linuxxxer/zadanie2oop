@@ -21,19 +21,22 @@ public class NetsFrame extends Frame implements ActionListener{
 
     public NetsFrame() throws HeadlessException {
         super("Zadanie 2");
-        Button button = new Button("Open");
 
-        Panel panel = new Panel();
-        panel.add(button);
-        this.add(panel, BorderLayout.NORTH);
         setVisible(true);
         setSize(800, 600);
         setLayout(new BorderLayout());
 
+        Button openButton = new Button("Open");
+
+//        Panel panel = new Panel();
+//        panel.add(openButton);
+        this.add(openButton, BorderLayout.PAGE_END);
+
+
         canvas = new NetsCanvas();
         this.add(canvas, BorderLayout.CENTER);
 
-        button.addActionListener(e -> {
+        openButton.addActionListener(e -> {
             FileNameExtensionFilter filter = new FileNameExtensionFilter("XML file", "XML");
             jf.setFileFilter(filter);
             int returnVal = jf.showOpenDialog(this);
