@@ -10,7 +10,7 @@ public class Arc
 
 //      pri objekte Arc meno je vzdy nastavene na "". Je to len formalne
     public Arc(Objekt fromWhere, Objekt toWhere, int multiplicity, long id) throws ExceptionWrongObjectType, ExceptionCannotResolveValue {
-        super("", id);
+        super("", id, 0, 0);
         if (toWhere.getClass() == fromWhere.getClass()) {
             throw new ExceptionWrongObjectType();
         }
@@ -23,6 +23,11 @@ public class Arc
         fromWhere.addOut(this);
         toWhere.addIn(this);
         this.multiplicity = multiplicity;
+    }
+
+    @Override
+    public int getTokenNumber() {
+        return 0;
     }
 
     @Override

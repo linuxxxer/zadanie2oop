@@ -7,15 +7,29 @@ import java.util.List;
 public class Transition
         extends Objekt {
 
-    public Transition(String name, long id) {
-        super(name, id);
+    public Transition(String name, long id, int x, int y) {
+        super(name, id, x, y);
     }
-/*
+
+    @Override
+    public int getTokenNumber() {
+        return 0;
+    }
+
+    @Override
+    public int getMultiplicity() {
+        return 0;
+    }
+
+    /*
  *  Overenie pustitelnosti prechodu, potom, ak je to pustitelny, pustenie prechodu
  */
-    public void fireTransition()
-            throws ExceptionFire{
-        this.testFireAbility();
+    public void fireTransition(){
+        try {
+            this.testFireAbility();
+        } catch (ExceptionFire exceptionFire) {
+            exceptionFire.ExceptionCannotFire(this);
+        }
         this.fire();
 
 
@@ -24,14 +38,18 @@ public class Transition
  *          overenie, ci je nasobnost vacsia ako pocet tokenov v mieste, odkial vychadza
  *          ak je vacsia, tak vyhodi vynimku ExceptionFire() -- prechod nie je pustitelny
  */
-    private void testFireAbility()
+    public boolean testFireAbility()
             throws ExceptionFire{
         List<Objekt> arcs = this.getFromWhere();
         for (Objekt arc : arcs){
+            if (arc.getClass() == ArcReset.class){
+                continue;
+            }
             if (arc.getMultiplicity() > (arc.getFromWhere().get(0)).getTokenNumber()){
-                throw new ExceptionFire();
+                return false;
             }
         }
+        return true;
     }
 /*
  *  Pustenie prechodu

@@ -1,7 +1,7 @@
 package graphics;
 
-import com.sun.xml.internal.ws.wsdl.writer.document.Import;
 import fromzad1.PetriNet;
+import zad2.sk.stuba.fei.oop.DrawableTransformer;
 import zad2.sk.stuba.fei.oop.PetriNetTransformer;
 
 import javax.swing.*;
@@ -11,43 +11,65 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 
-public class NetsFrame extends Frame {
-    final JFileChooser chooseFile = new JFileChooser();
-//    private Frame frame = new Frame();
-    public NetsFrame(){
+public class NetsFrame extends Frame implements ActionListener{
+
+    final private JFileChooser jf = new JFileChooser();
+
+    private NetsCanvas canvas;
+    private PetriNet petriNet;
+
+    public NetsFrame() throws HeadlessException {
         super("Zadanie 2");
-        this.setSize(900, 600);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new BorderLayout());
-        Panel panel = new Panel();
+        Button button = new Button("Open");
 
-        final Button button = new Button("Open");
+        Panel panel = new Panel();
+        panel.add(button);
+        this.add(panel, BorderLayout.NORTH);
+        setVisible(true);
+        setSize(800, 600);
+        setLayout(new BorderLayout());
+
+        canvas = new NetsCanvas();
+        this.add(canvas, BorderLayout.CENTER);
 
         button.addActionListener(e -> {
             FileNameExtensionFilter filter = new FileNameExtensionFilter("XML file", "XML");
-            chooseFile.setFileFilter(filter);
-            int returnVal = chooseFile.showOpenDialog(this);
+            jf.setFileFilter(filter);
+            int returnVal = jf.showOpenDialog(this);
             if (returnVal == JFileChooser.APPROVE_OPTION){
+
                 PetriNetTransformer petriNetTransformer = new PetriNetTransformer();
-                petriNetTransformer.loadFromXML(chooseFile.getSelectedFile().getAbsolutePath());
+                petriNet = petriNetTransformer.transformFromXML(jf.getSelectedFile().getAbsolutePath());
+
+                DrawableTransformer drawableTransformer = new DrawableTransformer(petriNet);
+                canvas.load(drawableTransformer.transformFromXML(jf.getSelectedFile().getAbsolutePath()));
+
+
+                canvas.repaint();
             }
         });
 
-        panel.add(button);
-        this.add(panel, BorderLayout.NORTH);
+
+
+
+
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent e) {
                 dispose();
             }
         });
-        this.setVisible(true);
     }
 
-    public static void main (String[] args){
-        NetsFrame netsFrame=new NetsFrame();
-//        netsFrame.makeWindowBitch();
-//        netsFrame.setVisible(true);
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        FileDialog dialog = new FileDialog(this, "Otvor", FileDialog.LOAD);
+        String path = dialog.getDirectory() + dialog.getFile();
+        int retVal = jf.showOpenDialog(this);
+        if (retVal == JFileChooser.APPROVE_OPTION){
+            PetriNetTransformer pnt = new PetriNetTransformer();
+//            petriNet = pnt.transformFromXML(jf.getSelectedFile().getAbsolutePath());
+        }
     }
 }

@@ -5,6 +5,5 @@ public class Main {
 
         NetsFrame myFrame = new NetsFrame();
 
-
     }
 }

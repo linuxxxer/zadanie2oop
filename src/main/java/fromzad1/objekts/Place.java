@@ -5,13 +5,19 @@ public class Place
 
     private int TokenNumber = 0;
 
-    public Place(String name, long id) {
-        super(name, id);
+    public Place(String name, long id, int tokens, int x, int y) {
+        super(name, id, x, y);
+        this.TokenNumber = tokens;
     }
 
     @Override
     public void resetToken(){
         this.TokenNumber = 0;
+    }
+
+    @Override
+    public int getMultiplicity() {
+        return 0;
     }
 
     @Override

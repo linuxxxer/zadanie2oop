@@ -35,12 +35,8 @@ public class PetriNet {
 
 //    metoda, ktora pusti prechod podla cisla id
 //    ak nevie pustit prechod, vypise, ktory prechod nebol pustitelny
-    public void pustiPrechod(int id) {
-        try {
-            transitionMap.get(id).fireTransition();
-        } catch (ExceptionFire exceptionFire) {
-            exceptionFire.printStackTrace();
-        }
+    public void pustiPrechod(long id) {
+        transitionMap.get(id).fireTransition();
     }
 
 /*
@@ -85,13 +81,13 @@ public class PetriNet {
             return null;
     }
 
-    public Objekt getPlace(int id){
+    public Objekt getPlace(long id){
         return placeMap.get(id);
     }
-    public Objekt getTransition(int id){
+    public Objekt getTransition(long id){
         return transitionMap.get(id);
     }
-    public Objekt getArc(int id){
+    public Objekt getArc(long id){
         return arcMap.get(id);
     }
 

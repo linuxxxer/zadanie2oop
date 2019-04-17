@@ -11,7 +11,7 @@ import java.io.InputStream;
 
 public class Main {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         try {
             InputStream resource = ClassLoader.getSystemResourceAsStream("fortest2.xml");
             JAXBContext context = JAXBContext.newInstance(Document.class);
@@ -34,5 +34,5 @@ public class Main {
         }
 
 
-    }
+    }*/
 }
