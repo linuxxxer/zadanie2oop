@@ -12,7 +12,7 @@ public class Arc2D extends Line2D.Float implements Drawable{
     private long ID;
     private final int ARR_SIZE = 8;
     private Arc arc;
-
+    private final int width = 2;
     public Arc2D(int sourceX, int sourceY, int destX, int destY, Arc arc){
         super(sourceX, sourceY, destX, destY);
         this.arc = arc;
@@ -20,7 +20,10 @@ public class Arc2D extends Line2D.Float implements Drawable{
 
     @Override
     public void draw(Graphics2D graphics2D) {
+        graphics2D.setStroke(new BasicStroke(width));
+        graphics2D.setColor(Color.RED);
         graphics2D.drawString("" + arc.getMultiplicity(), middleX(getX2(), getX1()), middleY(getY2(), getY1()));
+        graphics2D.setColor(Color.BLACK);
         if (arc.getClass() == Arc.class) {
             drawArrow(graphics2D, (int)this.getX1(), (int)this.getY1(), (int)this.getX2(), (int)this.getY2(), false);
         } else if (arc.getClass() == ArcReset.class){
