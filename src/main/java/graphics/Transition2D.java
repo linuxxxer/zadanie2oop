@@ -22,11 +22,11 @@ public class Transition2D extends Rectangle2D.Float implements Drawable {
         } else {
             graphics2D.setColor(Color.RED);
         }
-
+        graphics2D.setFont(new Font("Liberation Mono", Font.PLAIN, 14));
         graphics2D.fill(this);
         graphics2D.setColor(Color.BLACK);
         graphics2D.draw(this);
-        graphics2D.drawString(transition.getName(), (int)this.getX(), (int)this.getCenterY()+40);
+        graphics2D.drawString(transition.getName(), (int)this.getCenterX() - (transition.getName().length() * 4), (int)this.getY()+55);
     }
 
     @Override

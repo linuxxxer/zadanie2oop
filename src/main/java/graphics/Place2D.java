@@ -21,8 +21,10 @@ public class Place2D extends Ellipse2D.Float implements Drawable {
         graphics2D.fill(this);
         graphics2D.setColor(Color.BLACK);
         graphics2D.draw(this);
-        graphics2D.drawString( "" + place.getTokenNumber(), (int)getCenterX()-5, (int)getCenterY()+5);
-        graphics2D.drawString(place.getName(), (int)getX(), (int)getCenterY()+40);
+        graphics2D.setFont(new Font("Liberation Mono", Font.PLAIN, 14));
+//        Umiestnenie poctu tokenov do stredu kruhu
+        graphics2D.drawString( "" + place.getTokenNumber(), (int)getCenterX()-(Integer.toString(place.getTokenNumber()).length() * 4), (int)getCenterY()+5);
+        graphics2D.drawString(place.getName(), (int)getCenterX() - (place.getName().length() * 4), (int)getY()+55);
     }
 
     @Override
