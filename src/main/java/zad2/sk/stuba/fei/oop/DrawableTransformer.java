@@ -7,6 +7,10 @@ import zad2.sk.stuba.fei.oop.generated.*;
 import java.util.LinkedList;
 import java.util.List;
 
+/*
+ * Trieda sluziaca na transformaciu petriho sieta na List<Drawable>
+ */
+
 public class DrawableTransformer extends Transformer<List<Drawable>> {
 
     private PetriNet petriNet;

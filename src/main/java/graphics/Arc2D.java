@@ -8,6 +8,12 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 
+/*
+ * Implementacia hrany. Je to orientovana ciara medzi prechodom a miestom (resp. opacne)
+ * Metoda 'draw' zavola metodu 'drawArrow', ktora vykresluje ciaru so spikou smerovaciu spravnym smerom
+ * Ak sa jedna o reset hranu, metoda vykresli dve sipky pod sebou na ciaru
+ */
+
 public class Arc2D extends Line2D.Float implements Drawable{
     private long ID;
     private final int ARR_SIZE = 8;
@@ -35,11 +41,11 @@ public class Arc2D extends Line2D.Float implements Drawable{
     public void onClick(MouseEvent e) {
     }
 
+//    Metody vypocitaju stredny bod ciary (zvlast X a Y)
     private int middleX(double x_1, double x_2){
         double middle_x = ((x_2 - x_1) * 0.5) + x_1;
         return (int)middle_x;
     }
-
     private int middleY(double y_1, double y_2){
         double middle_y = ((y_2 - y_1) * 0.5) + y_1;
         return (int)middle_y;

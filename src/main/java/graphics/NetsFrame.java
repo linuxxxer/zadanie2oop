@@ -12,6 +12,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/*
+ * Trieda na implementovanie Frame-u.
+ * Ma za ulohu zvladat otvorenie JFileChooseru pomocou tlacidla 'openButton'
+ * Riadi transformacie
+ */
 public class NetsFrame extends Frame implements ActionListener{
 
     final private JFileChooser jf = new JFileChooser();
