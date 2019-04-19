@@ -6,6 +6,11 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 
+/*
+ * Implementacia Prechodu. Pri vykreslovani sa zjavi ako stvorec
+ * Metoda draw zistuje, ci je prechod pustitelny, podla toho vykresluje zeleni (ak ano), alebo cerveny (ak nie) stvorec.
+ * Nazov pod stvorcom je upraveny aby bol v strede
+ */
 public class Transition2D extends Rectangle2D.Float implements Drawable {
 
     private Transition transition;

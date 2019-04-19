@@ -25,6 +25,12 @@ public class Arc
         this.multiplicity = multiplicity;
     }
 
+//    metoda nastavuje hodnotu 'multiplicity'
+//    zvisuje (resp. znizuje) hodnotu podla parametra
+    public void setMultiplicity(int multiplicity) {
+        this.multiplicity += multiplicity;
+    }
+
     @Override
     public int getTokenNumber() {
         return 0;
@@ -33,5 +39,9 @@ public class Arc
     @Override
     public int getMultiplicity() {
         return multiplicity;
+    }
+
+    public void resetMultiplicity() {
+        this.multiplicity = 1;
     }
 }

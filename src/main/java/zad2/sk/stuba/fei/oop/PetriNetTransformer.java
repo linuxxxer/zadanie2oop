@@ -8,10 +8,8 @@ import graphics.Importer;
 import zad2.sk.stuba.fei.oop.generated.*;
 
 /*
-* Class to copy the petri net structure
-* from the generated classes to
-* my classes
-*/
+ * Trieda na transformaciu Dokumentu na petriho siet
+ */
 public class PetriNetTransformer extends Transformer<PetriNet> {
 
     public PetriNet transform(Document document){
